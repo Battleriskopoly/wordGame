@@ -1,0 +1,27 @@
+
+<h1><%= @game.name%></h1>
+<h3><%= @game.rules%></h3>
+
+<%= render partial: "entries", collection: @entries, as: :entry  %>
+<%if @lastEntry != nil%>
+<%= @lastEntry.vote_number %>
+    <button class="vote" value="up" id="<%= @lastEntry.id%>">Up</button>
+    <button class="vote"  value="down" id="<%= @lastEntry.id%>">Down</button>
+<%end%>
+
+<h3>Submit Rhyme</h3>
+<%= form_for @game do |f| %>
+    <%= f.fields_for :entry do |builder| %>
+        <%= builder.label :content, 'Rhyme:' %><br>
+        <%= builder.text_area :content %><br>
+        <%= builder.label :user_name, 'User Name:' %><br>
+        <%= builder.text_field :user_name, :value => 'Annon' %><br>
+    <% end %>
+    <%= f.fields_for :vote do |builder| %>
+        <%= builder.hidden_field :direction %>
+        <%= builder.hidden_field :entry_id %>
+    <% end %>
+    <%= f.submit "Create", :id => "submit" %>
+<% end %>
+
+

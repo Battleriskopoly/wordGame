@@ -14,3 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$(window).ready( function() {
+    $(".vote").click( function() {
+        $("#game_vote_direction").val($(this).val())
+        $("#game_vote_entry_id").val(this.id)
+        $("#submit").click()
+    })
+})
