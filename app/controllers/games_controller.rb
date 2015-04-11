@@ -1,8 +1,7 @@
 class GamesController < ApplicationController
 
   def index
-
-    @games = Game.all
+    redirect_to game_url(3)
   end
 
   def show
